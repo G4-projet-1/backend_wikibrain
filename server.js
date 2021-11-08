@@ -18,10 +18,10 @@ var conn = mysql.createConnection({
 // verifier si la connection et bonne ou pas
 conn.connect((err) => {
     if(!err){
-        console.log("La connection a la bdd est effectuer");
+        console.log("La connection à la bdd est effectuée");
     }
     else {
-        console.log("La connection a la BDD à échouer \n Erreur :" + JSON.stringify(err,undefined,2));
+        console.log("La connection à la BDD a échouée \n Erreur :" + JSON.stringify(err,undefined,2));
     }
 });
 
