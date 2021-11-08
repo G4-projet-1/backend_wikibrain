@@ -110,6 +110,28 @@ app.delete('/roles/:id', (req,res) => {
         }
     })
 });
+
+app.put('/roles', (req,res) => {
+    let roles = req.body;
+    conn.query('INSERT INTO Role (nom) VALUES (?)',[roles.nom],(err,rows,fields) => {
+        if(!err)
+        {
+            console.log(rows);
+            res.send({
+                "code":200,
+                "success":"Le role a bien été crée"
+            });
+        }
+        else
+        {
+            console.log(err);
+            res.send({
+                "code":400,
+                "failed":"erreur survenue"
+            })
+        }
+    })
+});
 ///
 
 /// Categorie
