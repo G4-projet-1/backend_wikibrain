@@ -5,7 +5,7 @@ var app = express();
 const port = 3000; 
 const bodyparser = require('body-parser'); // obselete ne pas utiliser !!!!!
 
-app.use(json());
+app.use(express.json());
 
 // Connection string db mysql
 var conn = mysql.createConnection({
