@@ -33,14 +33,14 @@ app.listen(port, () => console.log("L'api wikibrain tourne sur : http://localhos
 app.get('/utilisateurs', (req,res) => {
     conn.query('SELECT * FROM Utilisateur',(err,rows,fields) => {
         if (!err) {
-            res.send(rows);
-            res.send({
+            return res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -52,13 +52,13 @@ app.get('/utilisateurs/:id', (req,res) => {
     conn.query('SELECT * FROM Utilisateur where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"operation reussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -70,13 +70,13 @@ app.delete('/utilisateurs/:id', (req,res) => {
     conn.query('DELETE FROM Utilisateur where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -88,14 +88,14 @@ app.put('/utilisateurs', (req,res) => {
     let utilisateurs = req.body;
     conn.query('INSERT INTO Utilisateur (nom,prenom,username,mdp,id_role) VALUES (?,?,?,?,?)',[utilisateurs.nom,utilisateurs.prenom,utilisateurs.username,utilisateurs.mdp,utilisateurs.id_role],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -107,14 +107,14 @@ app.post('/utilisateurs/:id', (req,res) => {
     let utilisateurs = req.body;
     conn.query('UPDATE Utilisateur SET nom = ? , prenom = ? , username = ? , mdp = ? WHERE id = ?',[utilisateurs.nom,utilisateurs.prenom,utilisateurs.username,utilisateurs.mdp,req.params.id],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -128,13 +128,13 @@ app.get('/roles', (req,res) =>{
     conn.query('SELECT * FROM Role',(err,rows,fields) =>{
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -146,13 +146,13 @@ app.get('/roles/:id', (req,res) => {
     conn.query('SELECT * FROM Role where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -164,13 +164,13 @@ app.delete('/roles/:id', (req,res) => {
     conn.query('DELETE FROM Role where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -182,14 +182,14 @@ app.put('/roles', (req,res) => {
     let roles = req.body;
     conn.query('INSERT INTO Role (nom) VALUES (?)',[roles.nom],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"erreur survenue"
             })
@@ -201,14 +201,14 @@ app.post('/roles/:id', (req,res) => {
     let role = req.body;
     conn.query('UPDATE Role SET nom = ? WHERE id = ?',[role.nom,req.params.id],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -222,13 +222,13 @@ app.get('/categories', (req,res) =>{
     conn.query('SELECT * FROM Categorie',(err,rows,fields) =>{
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -240,13 +240,13 @@ app.get('/categories/:id', (req,res) => {
     conn.query('SELECT * FROM Categorie where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -258,13 +258,13 @@ app.delete('/categories/:id', (req,res) => {
     conn.query('DELETE FROM Categorie where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -276,14 +276,14 @@ app.put('/categories', (req,res) => {
     let categories = req.body;
     conn.query('INSERT INTO Categorie (nom) VALUES (?)',[categories.nom],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -295,14 +295,14 @@ app.post('/categories/:id', (req,res) => {
     let categories = req.body;
     conn.query('UPDATE Categorie SET nom = ? WHERE id = ?',[categories.nom,req.params.id],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -316,13 +316,13 @@ app.get('/fiches', (req,res) =>{
     conn.query('SELECT * FROM Fiche',(err,rows,fields) =>{
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -334,13 +334,13 @@ app.get('/fiches/:id', (req,res) =>{
     conn.query('SELECT * FROM Fiche where id = ?',[req.params.id], (err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -353,13 +353,13 @@ app.get('/fiches/search/', async (req, res) => {
     conn.query('SELECT * FROM Fiche WHERE nom LIKE %?%',[fiche.nom], (err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -371,13 +371,13 @@ app.delete('/fiches/:id', (req,res) => {
     conn.query('DELETE FROM Fiche where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -389,14 +389,14 @@ app.put('/fiches', (req,res) => {
     let fiches = req.body;
     conn.query('INSERT INTO Fiche (titre,contenu,date_creation,id_categ,id_util) VALUES (?,?,?,?,?)',[fiches.titre,fiches.contenu,fiches.date_creation,fiches.id_categ,fiches.id_util],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -408,14 +408,14 @@ app.post('/fiches/:id', (req,res) => {
     let fiches = req.body;
     conn.query('UPDATE Fiche SET titre = ? , contenu = ? WHERE id = ?',[fiches.titre,fiches.contenu,req.params.id],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -429,13 +429,13 @@ app.get('/modfiches', (req,res) =>{
     conn.query('SELECT * FROM Modification_fiche',(err,rows,fields) =>{
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -447,13 +447,13 @@ app.get('/modfiches/:id', (req,res) =>{
     conn.query('SELECT * FROM Modification_fiche where id = ?',[req.params.id], (err,rows,fields) =>{
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -465,13 +465,13 @@ app.delete('/modfiches/:id', (req,res) => {
     conn.query('DELETE FROM Modification_fiche where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -483,14 +483,14 @@ app.put('/modfiches', (req,res) => {
     let modfiches = req.body;
     conn.query('INSERT INTO Modification_fiche (date_motif,id_fiche,id_util) VALUES (?,?,?)',[modfiches.date_motif,modfiches.id_fiche,modfiches.id_util],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -502,14 +502,14 @@ app.post('/modfiches/:id', (req,res) => {
     let modfiches = req.body;
     conn.query('UPDATE Modification_fiche SET date_motif = ? , id_fiche = ? , id_util = ? WHERE id = ?',[modfiches.date_motif,modfiches.id_fiche,modfiches.id_util,req.params.id],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -523,13 +523,13 @@ app.get('/comfiches', (req,res) =>{
     conn.query('SELECT * FROM Commentaire_fiche',(err,rows,fields) =>{
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -541,13 +541,13 @@ app.get('/comfiches/:id', (req,res) =>{
     conn.query('SELECT * FROM Commentaire_fiche where id = ?',[req.params.id], (err,rows,fields) =>{
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -559,13 +559,13 @@ app.delete('/comfiches/:id', (req,res) => {
     conn.query('DELETE FROM Commentaire_fiche where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
-            res.send({
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -577,14 +577,14 @@ app.put('/comfiches', (req,res) => {
     let comfiches = req.body;
     conn.query('INSERT INTO Commentaire_fiche (contenu,date_crea,id_fiche,id_util) VALUES (?,?,?,?)',[comfiches.contenu,comfiches.date_crea,comfiches.id_fiche,comfiches.id_util],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
@@ -596,14 +596,14 @@ app.post('/comfiches/:id', (req,res) => {
     let comfiches = req.body;
     conn.query('UPDATE Commentaire_fiche SET contenu = ? WHERE id = ?',[comfiches.contenu,req.params.id],(err,rows,fields) => {
         if (!err) {
-            console.log(rows);
-            res.send({
+            res.send(rows);
+            console.log({
                 "code":200,
                 "success":"opération réussite"
             });
         } else {
-            console.log(err);
-            res.send({
+            res.send(err);
+            console.log({
                 "code":400,
                 "failed":"une erreur survenue"
             })
