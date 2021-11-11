@@ -222,7 +222,7 @@ app.get('/fiches/:id', (req,res) =>{
 
 app.get('/fiches/search/', async (req, res) => {
     let fiche = req.body;
-    conn.query('SELECT * FROM Fiche WHERE nom LIKE ?',[fiche.nom], (err,rows,fields) => {
+    conn.query('SELECT * FROM Fiche WHERE nom LIKE %?%',[fiche.nom], (err,rows,fields) => {
         if (!err) {
             res.send(rows);
         } else {
