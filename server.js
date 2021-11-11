@@ -34,8 +34,16 @@ app.get('/utilisateurs', (req,res) => {
     conn.query('SELECT * FROM Utilisateur',(err,rows,fields) => {
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -44,8 +52,16 @@ app.get('/utilisateurs/:id', (req,res) => {
     conn.query('SELECT * FROM Utilisateur where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"operation reussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -53,9 +69,17 @@ app.get('/utilisateurs/:id', (req,res) => {
 app.delete('/utilisateurs/:id', (req,res) => {
     conn.query('DELETE FROM Utilisateur where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
-            res.send("Données parfaitement supprimées");
+            res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -65,8 +89,16 @@ app.put('/utilisateurs', (req,res) => {
     conn.query('INSERT INTO Utilisateur (nom,prenom,username,mdp,id_role) VALUES (?,?,?,?,?)',[utilisateurs.nom,utilisateurs.prenom,utilisateurs.username,utilisateurs.mdp,utilisateurs.id_role],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -76,8 +108,16 @@ app.post('/utilisateurs/:id', (req,res) => {
     conn.query('UPDATE Utilisateur SET nom = ? , prenom = ? , username = ? , mdp = ? WHERE id = ?',[utilisateurs.nom,utilisateurs.prenom,utilisateurs.username,utilisateurs.mdp],[req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -88,8 +128,16 @@ app.get('/roles', (req,res) =>{
     conn.query('SELECT * FROM Role',(err,rows,fields) =>{
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -98,8 +146,16 @@ app.get('/roles/:id', (req,res) => {
     conn.query('SELECT * FROM Role where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -107,9 +163,17 @@ app.get('/roles/:id', (req,res) => {
 app.delete('/roles/:id', (req,res) => {
     conn.query('DELETE FROM Role where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
-            res.send("Données parfaitement supprimées");
+            res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -121,7 +185,7 @@ app.put('/roles', (req,res) => {
             console.log(rows);
             res.send({
                 "code":200,
-                "success":"Le role a bien été crée"
+                "success":"opération réussite"
             });
         } else {
             console.log(err);
@@ -138,8 +202,16 @@ app.post('/roles/:id', (req,res) => {
     conn.query('UPDATE Role SET nom = ? WHERE id = ?',[role.nom],[req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -150,8 +222,16 @@ app.get('/categories', (req,res) =>{
     conn.query('SELECT * FROM Categorie',(err,rows,fields) =>{
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -160,8 +240,16 @@ app.get('/categories/:id', (req,res) => {
     conn.query('SELECT * FROM Categorie where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -169,9 +257,17 @@ app.get('/categories/:id', (req,res) => {
 app.delete('/categories/:id', (req,res) => {
     conn.query('DELETE FROM Categorie where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
-            res.send("Données parfaitement supprimées");
+            res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -181,8 +277,16 @@ app.put('/categories', (req,res) => {
     conn.query('INSERT INTO Categorie (nom) VALUES (?)',[categories.nom],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -192,8 +296,16 @@ app.post('/categories/:id', (req,res) => {
     conn.query('UPDATE Categorie SET nom = ? WHERE id = ?',[categories.nom],[req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -204,8 +316,16 @@ app.get('/fiches', (req,res) =>{
     conn.query('SELECT * FROM Fiche',(err,rows,fields) =>{
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -214,8 +334,16 @@ app.get('/fiches/:id', (req,res) =>{
     conn.query('SELECT * FROM Fiche where id = ?',[req.params.id], (err,rows,fields) => {
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -225,8 +353,16 @@ app.get('/fiches/search/', async (req, res) => {
     conn.query('SELECT * FROM Fiche WHERE nom LIKE %?%',[fiche.nom], (err,rows,fields) => {
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 })
@@ -234,9 +370,17 @@ app.get('/fiches/search/', async (req, res) => {
 app.delete('/fiches/:id', (req,res) => {
     conn.query('DELETE FROM Fiche where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
-            res.send("Données parfaitement supprimées");
+            res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -246,8 +390,16 @@ app.put('/fiches', (req,res) => {
     conn.query('INSERT INTO Fiche (titre,contenu,date_creation,id_categ,id_util) VALUES (?,?,?,?,?)',[fiches.titre,fiches.contenu,fiches.date_creation,fiches.id_categ,fiches.id_util],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -257,8 +409,16 @@ app.post('/fiches/:id', (req,res) => {
     conn.query('UPDATE Fiche SET titre = ? , contenu = ? WHERE id = ?',[fiches.titre,fiches.contenu],[req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -269,8 +429,16 @@ app.get('/modfiches', (req,res) =>{
     conn.query('SELECT * FROM Modification_fiche',(err,rows,fields) =>{
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -279,8 +447,16 @@ app.get('/modfiches/:id', (req,res) =>{
     conn.query('SELECT * FROM Modification_fiche where id = ?',[req.params.id], (err,rows,fields) =>{
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -288,9 +464,17 @@ app.get('/modfiches/:id', (req,res) =>{
 app.delete('/modfiches/:id', (req,res) => {
     conn.query('DELETE FROM Modification_fiche where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
-            res.send("Données parfaitement supprimées");
+            res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -300,8 +484,16 @@ app.put('/modfiches', (req,res) => {
     conn.query('INSERT INTO Modification_fiche (date_motif,id_fiche,id_util) VALUES (?,?,?)',[modfiches.date_motif,modfiches.id_fiche,modfiches.id_util],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -311,8 +503,16 @@ app.post('/modfiches/:id', (req,res) => {
     conn.query('UPDATE Modification_fiche SET date_motif = ? , id_fiche = ? , id_util = ? WHERE id = ?',[modfiches.date_motif,modfiches.id_fiche,modfiches.id_util],[req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -323,8 +523,16 @@ app.get('/comfiches', (req,res) =>{
     conn.query('SELECT * FROM Commentaire_fiche',(err,rows,fields) =>{
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -333,8 +541,16 @@ app.get('/comfiches/:id', (req,res) =>{
     conn.query('SELECT * FROM Commentaire_fiche where id = ?',[req.params.id], (err,rows,fields) =>{
         if (!err) {
             res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -342,9 +558,17 @@ app.get('/comfiches/:id', (req,res) =>{
 app.delete('/comfiches/:id', (req,res) => {
     conn.query('DELETE FROM Commentaire_fiche where id = ?',[req.params.id],(err,rows,fields) => {
         if (!err) {
-            res.send("Données parfaitement supprimées");
+            res.send(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -354,8 +578,16 @@ app.put('/comfiches', (req,res) => {
     conn.query('INSERT INTO Commentaire_fiche (contenu,date_crea,id_fiche,id_util) VALUES (?,?,?,?)',[comfiches.contenu,comfiches.date_crea,comfiches.id_fiche,comfiches.id_util],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
@@ -365,8 +597,16 @@ app.post('/comfiches/:id', (req,res) => {
     conn.query('UPDATE Commentaire_fiche SET contenu = ? WHERE id = ?',[comfiches.contenu],[req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
+            res.send({
+                "code":200,
+                "success":"opération réussite"
+            });
         } else {
             console.log(err);
+            res.send({
+                "code":400,
+                "failed":"une erreur survenue"
+            })
         }
     })
 });
