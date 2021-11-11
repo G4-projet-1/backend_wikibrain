@@ -105,7 +105,7 @@ app.put('/utilisateurs', (req,res) => {
 
 app.post('/utilisateurs/:id', (req,res) => {
     let utilisateurs = req.body;
-    conn.query('UPDATE Utilisateur SET nom = ? , prenom = ? , username = ? , mdp = ? WHERE id = ?',[utilisateurs.nom,utilisateurs.prenom,utilisateurs.username,utilisateurs.mdp],[req.params.id],(err,rows,fields) => {
+    conn.query('UPDATE Utilisateur SET nom = ? , prenom = ? , username = ? , mdp = ? WHERE id = ?',[utilisateurs.nom,utilisateurs.prenom,utilisateurs.username,utilisateurs.mdp,req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
             res.send({
@@ -293,7 +293,7 @@ app.put('/categories', (req,res) => {
 
 app.post('/categories/:id', (req,res) => {
     let categories = req.body;
-    conn.query('UPDATE Categorie SET nom = ? WHERE id = ?',[categories.nom],[req.params.id],(err,rows,fields) => {
+    conn.query('UPDATE Categorie SET nom = ? WHERE id = ?',[categories.nom,req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
             res.send({
@@ -406,7 +406,7 @@ app.put('/fiches', (req,res) => {
 
 app.post('/fiches/:id', (req,res) => {
     let fiches = req.body;
-    conn.query('UPDATE Fiche SET titre = ? , contenu = ? WHERE id = ?',[fiches.titre,fiches.contenu],[req.params.id],(err,rows,fields) => {
+    conn.query('UPDATE Fiche SET titre = ? , contenu = ? WHERE id = ?',[fiches.titre,fiches.contenu,req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
             res.send({
@@ -500,7 +500,7 @@ app.put('/modfiches', (req,res) => {
 
 app.post('/modfiches/:id', (req,res) => {
     let modfiches = req.body;
-    conn.query('UPDATE Modification_fiche SET date_motif = ? , id_fiche = ? , id_util = ? WHERE id = ?',[modfiches.date_motif,modfiches.id_fiche,modfiches.id_util],[req.params.id],(err,rows,fields) => {
+    conn.query('UPDATE Modification_fiche SET date_motif = ? , id_fiche = ? , id_util = ? WHERE id = ?',[modfiches.date_motif,modfiches.id_fiche,modfiches.id_util,req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
             res.send({
@@ -594,7 +594,7 @@ app.put('/comfiches', (req,res) => {
 
 app.post('/comfiches/:id', (req,res) => {
     let comfiches = req.body;
-    conn.query('UPDATE Commentaire_fiche SET contenu = ? WHERE id = ?',[comfiches.contenu],[req.params.id],(err,rows,fields) => {
+    conn.query('UPDATE Commentaire_fiche SET contenu = ? WHERE id = ?',[comfiches.contenu,req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
             res.send({
