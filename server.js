@@ -199,7 +199,7 @@ app.put('/roles', (req,res) => {
 
 app.post('/roles/:id', (req,res) => {
     let role = req.body;
-    conn.query('UPDATE Role SET nom = ? WHERE id = ?',[role.nom],[req.params.id],(err,rows,fields) => {
+    conn.query('UPDATE Role SET nom = ? WHERE id = ?',[role.nom,req.params.id],(err,rows,fields) => {
         if (!err) {
             console.log(rows);
             res.send({
